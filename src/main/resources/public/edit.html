@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Members</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form method="post" action="/editMember">
+    <p>Choose Name: <select name="targetId" id="memberId"></select> </p>
+    <p>New Name: <input name="newName" type="text"> </p>
+    <input type="submit" value="Submit">
+</form>
+
+<form method="post" action="/editTask">
+    <p>Choose task: <select name="targetId" id="taskId"></select> </p>
+    <p>New Name: <input name="newName" type="text"> </p>
+    <input type="submit" value="Submit">
+</form>
+
+<form method="post" action="/editStatus">
+    <p>Choose Status: <select name="targetId" id="statusId"></select> </p>
+    <p>New Name: <input name="newName" type="text"> </p>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+</body>
+<script>
+    fetch("/memberOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("memberId").innerHTML = text;
+    });
+    fetch("/taskOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("taskId").innerHTML = text;
+    });
+    fetch("/statusOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("statusId").innerHTML = text;
+    });
+
+
+</script>
+</html>

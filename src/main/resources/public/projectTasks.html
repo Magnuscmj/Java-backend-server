@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Project tasks:</h1>
+<div id="projectTasks"></div>
+<a href="index.html"><- Back to frontpage</a>
+
+<h2>Filter tasks by status:</h2>
+<form>
+    <select name="statusId" id="statusId"></select>
+    <button>Submit</button>
+</form>
+<div id="filterTasks"></div>
+
+<h2>Add task to member:</h2>
+<form method="post" action="/addTaskToMember">
+    <p>Member: <select name="memberId" id="memberId"></select> </p>
+    <p>New Task: <select name="taskId" id="addTaskId"></select> </p>
+    <input type="submit" value="Submit">
+</form>
+
+<h2>Change status on task: </h2>
+<form action="/updateTask" method="post">
+    <label>Tasks: </label>
+    <select name="taskId" id="taskId"></select>
+    <label>Status: </label>
+    <select id="statusChanges" name="status"></select>
+    <button class="button">OK</button>
+</form>
+</body>
+<script>
+    fetch("/projectTasks")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projectTasks").innerHTML = text;
+    });
+    fetch("/taskOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("taskId").innerHTML = text;
+    });
+    fetch("/statusOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("statusId").innerHTML = text;
+    });
+    fetch("/statusOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("statusChanges").innerHTML = text;
+    });
+    fetch("/taskByStatus" + location.search)
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("filterTasks").innerHTML = text;
+    });
+    fetch("/memberOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("memberId").innerHTML = text;
+    });
+    fetch("/taskOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("addTaskId").innerHTML = text;
+    });
+</script>
+</html>

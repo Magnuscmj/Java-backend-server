@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Members</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>These are all the project members:</h1>
+    <div id="projectMembers"></div>
+
+    <h2>Filter members by task:</h2>
+    <form>
+        <select name="taskId" id="taskId"></select>
+        <button>Submit</button>
+    </form>
+    <div id="filterMembers"></div>
+
+    <a href="index.html">Back to frontpage</a>
+
+    <h2>Remove a task from a member:</h2>
+    <form method="post" action="/removeTaskFromMember">
+        <p>Remove task: <select name="taskId" id="removeTaskId"></select> </p>
+        <p>From: <select name="memberId" id="fromMemberId"></select> </p>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+<script>
+    fetch("/projectMembers")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("projectMembers").innerHTML = text;
+    });
+    fetch("/taskOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("taskId").innerHTML = text;
+    });
+    fetch("/projectMembersByTask" + location.search)
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("filterMembers").innerHTML = text;
+    });
+
+    fetch("/memberOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("fromMemberId").innerHTML = text;
+    });
+    fetch("/taskOptions")
+        .then(function(response) {
+            return response.text();
+        }).then(function(text) {
+        document.getElementById("removeTaskId").innerHTML = text;
+    });
+</script>
+</html>

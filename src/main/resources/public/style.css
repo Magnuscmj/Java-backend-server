@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    font-family: Montserrat;
+}
+
+body {
+    background-color: lightgrey;
+}
+
+.container{
+    width: 20%;
+    margin: auto;
+    text-align: center;
+    border: 1px solid black;
+    padding: 40px 200px;
+}
+
+.container button{
+    margin: 10px;
+}
+
+.container ul{
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    margin: 50px 0;
+}
+
+.container li{
+    padding-bottom: 10px;
+}
+
+.container input{
+    margin-bottom: 10px;
+}
